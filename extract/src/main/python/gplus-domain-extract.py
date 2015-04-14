@@ -10,9 +10,9 @@ from apiclient.discovery import build
 from oauth2client.client import SignedJwtAssertionCredentials
 
 #  Fill in the following values based upon the previous steps
-SERVICE_ACCOUNT_EMAIL = '<your_service_account_email>'
-SERVICE_ACCOUNT_PKCS12_FILE_PATH = '<your_p12_key_file>'
-USER_EMAIL = '<email_from_a_domain_admin>'
+SERVICE_ACCOUNT_EMAIL = '86057209538-rlvi2ellefe6aq7isc1o62jpghbtd5vr@developer.gserviceaccount.com'
+SERVICE_ACCOUNT_PKCS12_FILE_PATH = '/home/gilmarj/labs/google-bigdata-training/i-ciandt-dev-key.p12'
+USER_EMAIL = 'ereed@ciandt.com'
 
 
 # List the scopes your app requires. These must match the scopes
