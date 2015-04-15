@@ -18,7 +18,6 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 import com.google.cloud.hadoop.io.bigquery.BigQueryConfiguration;
 import com.google.cloud.hadoop.io.bigquery.BigQueryOutputFormat;
-import com.google.cloud.hadoop.io.bigquery.GsonBigQueryInputFormat;
 import com.google.cloud.hadoop.util.LogUtil;
 import com.google.gson.JsonObject;
 
@@ -134,6 +133,6 @@ public class WordCountToBigQuery {
 		job.waitForCompletion(true);
 		
 	    // Make sure to clean up the Google Cloud Storage export paths.
-	    GsonBigQueryInputFormat.cleanupJob(conf,job.getJobID());
+	    //GsonBigQueryInputFormat.cleanupJob(conf,job.getJobID());
 	}
 }
