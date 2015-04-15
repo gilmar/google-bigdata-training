@@ -20,7 +20,7 @@ SERVICE_ACCOUNT_EMAIL = '<your_service_account_email_here>'
 SERVICE_ACCOUNT_PKCS12_FILE_PATH = '<path_to_p12_key>'
 USER_EMAIL = '<admin>'
 
-PEOPLE_FILE = '/home/gilmarj/labs/google-bigdata-training/google-bigdata-participants.csv'
+PEOPLE_FILE = '/home/gilmarj/labs/google-bigdata-training/src/main/resources/google-bigdata-participants.csv'
 JSON_OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-posts.json'
 TXT_OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-posts.txt'
 
