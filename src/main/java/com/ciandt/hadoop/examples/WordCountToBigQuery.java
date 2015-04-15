@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.JobConf;
@@ -28,8 +27,8 @@ public class WordCountToBigQuery {
 	// Logger.
 	protected static final LogUtil log = new LogUtil(WordCountToBigQuery.class);
 
-	public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
-		private final static IntWritable one = new IntWritable(1);
+	public static class Map extends Mapper<LongWritable, Text, Text, LongWritable> {
+		private final static LongWritable one = new LongWritable(1);
 		private Text wordText = new Text();
 
 		public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
