@@ -98,11 +98,11 @@ public class WordCountToBigQuery {
 		conf.set(BigQueryConfiguration.PROJECT_ID_KEY, projectId);
 
 		// Make sure the required export-bucket setting is present.
-		if (StringUtils.isNotEmpty(conf.get(BigQueryConfiguration.GCS_BUCKET_KEY))) {
+		if (StringUtils.isEmpty(conf.get(BigQueryConfiguration.GCS_BUCKET_KEY))) {
 			log.warn("Missing config for '%s'; trying to default to fs.gs.system.bucket.",
 					BigQueryConfiguration.GCS_BUCKET_KEY);
 			String systemBucket = conf.get("fs.gs.system.bucket");
-			if (StringUtils.isNotEmpty(systemBucket)) {
+			if (StringUtils.isEmpty(systemBucket)) {
 				log.error("Also missing fs.gs.system.bucket; value must be specified.");
 				System.exit(1);
 			} else {
