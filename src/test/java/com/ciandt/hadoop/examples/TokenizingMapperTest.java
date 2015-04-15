@@ -1,4 +1,4 @@
-package com.ciandt;
+package com.ciandt.hadoop.examples;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -15,6 +15,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import com.ciandt.hadoop.examples.TokenizingMapper;
 
 
 @RunWith(MockitoJUnitRunner.class)

@@ -1,4 +1,4 @@
-package com.ciandt;
+package com.ciandt.hadoop.examples;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;

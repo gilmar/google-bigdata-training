@@ -1,4 +1,4 @@
-package com.ciandt;
+package com.ciandt.hadoop.examples;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
