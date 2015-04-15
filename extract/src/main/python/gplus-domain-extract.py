@@ -11,6 +11,9 @@ from random import randint
 from time import sleep
 from apiclient.discovery import build
 from oauth2client.client import SignedJwtAssertionCredentials
+import HTMLParser
+import re
+import io
 
 #  Fill in the following values based upon the previous steps
 SERVICE_ACCOUNT_EMAIL = '86057209538-rlvi2ellefe6aq7isc1o62jpghbtd5vr@developer.gserviceaccount.com'
@@ -18,7 +21,8 @@ SERVICE_ACCOUNT_PKCS12_FILE_PATH = '/home/gilmarj/labs/google-bigdata-training/i
 USER_EMAIL = 'gilmarj@ciandt.com'
 
 PEOPLE_FILE = '/home/gilmarj/labs/google-bigdata-training/google-bigdata-participants.csv'
-OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-post.json'
+JSON_OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-posts.json'
+TXT_OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-posts.txt'
 
 
 # List the scopes your app requires. These must match the scopes
@@ -44,7 +48,12 @@ def authenticate():
     # Create and return the authorized API client
     return build('plusDomains', 'v1', http=http)
 
-def read_posts(user_id, out_file):
+def remove_tags(text):
+    html_parser = HTMLParser.HTMLParser()
+    unescaped = html_parser.unescape(text)
+    return re.compile(r'<[^>]+>').sub('', unescaped)
+
+def read_posts(user_id, json_out_file, txt_out_file):
     service = authenticate()
     activities_service = service.activities()
     request = activities_service.list(
@@ -62,21 +71,23 @@ def read_posts(user_id, out_file):
                     desc =  activity.get('access').get('description')
                 if 'CI&T Developers' in desc:
                     print json.dumps(activity,sort_keys=True) 
-                    out_file.write(json.dumps(activity,sort_keys=True)+'\n')
-                    #print activity.get('id'), activity.get('access').get('description'), activity.get('object').get('content')
+                    json_out_file.write(unicode(json.dumps(activity,sort_keys=True))+'\n')
+                    content = remove_tags(activity.get('object').get('content'))
+                    txt_out_file.write(unicode(content+'\n').replace(u'\ufeff', '')) 
+                    print activity.get('id'), activity.get('access').get('description'), activity.get('object').get('content')
 
         request = activities_service.list_next(request, activities_document)
 
 if __name__ == '__main__':
-    #user_id = '105080935156288774908' 
-    #read_posts(user_id) 
-    out_file = open(OUTPUT_FILE,'w')
+    json_out_file = io.open(JSON_OUTPUT_FILE, 'w', encoding='utf8')
+    txt_out_file = io.open(TXT_OUTPUT_FILE, 'w', encoding='utf8')
     with open(PEOPLE_FILE, 'rb') as csvfile:
         people  = csv.reader(csvfile, delimiter=',')
         for person in people:
             sleep(randint(0,1))
-            try:
-                read_posts(person[1],out_file)
-            except:
-                print "Unexpected error:", sys.exc_info()[0] 
-    out_file.close()
+            #try:
+            read_posts(person[1],json_out_file,txt_out_file)
+            #except:
+            #    print "Unexpected error:", sys.exc_info()[0] 
+    json_out_file.close()
+    txt_out_file.close()
