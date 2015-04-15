@@ -16,9 +16,9 @@ import re
 import io
 
 #  Fill in the following values based upon the previous steps
-SERVICE_ACCOUNT_EMAIL = '86057209538-rlvi2ellefe6aq7isc1o62jpghbtd5vr@developer.gserviceaccount.com'
-SERVICE_ACCOUNT_PKCS12_FILE_PATH = '/home/gilmarj/labs/google-bigdata-training/i-ciandt-dev-key.p12'
-USER_EMAIL = 'gilmarj@ciandt.com'
+SERVICE_ACCOUNT_EMAIL = '<your_service_account_email_here>'
+SERVICE_ACCOUNT_PKCS12_FILE_PATH = '<path_to_p12_key>'
+USER_EMAIL = '<admin>'
 
 PEOPLE_FILE = '/home/gilmarj/labs/google-bigdata-training/google-bigdata-participants.csv'
 JSON_OUTPUT_FILE = '/home/gilmarj/labs/google-bigdata-training/gplus-developers-posts.json'
