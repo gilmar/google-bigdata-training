@@ -7,7 +7,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ciandt</groupId>
+  <groupId>com.ciandt.hadoop.examples</groupId>
   <artifactId>google-bigdata-training</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -31,12 +31,14 @@
         <groupId>com.google.cloud.bigdataoss</groupId>
         <artifactId>bigquery-connector</artifactId>
         <version>0.6.0-hadoop2</version>
+        <scope>provided</scope>
     </dependency>
 
     <dependency>
         <groupId>com.google.cloud.bigdataoss</groupId>
         <artifactId>util</artifactId>
         <version>1.3.3-hadoop2</version>
+        <scope>provided</scope>
     </dependency>
 
     <!--
@@ -79,7 +81,7 @@
           </descriptors>
           <archive>
             <manifest>
-              <mainClass>com.ciandt.WordCount</mainClass>
+              <mainClass>com.ciandt.hadoop.examples.WordCountToBigQuery</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -94,6 +96,7 @@
         </executions>
       </plugin>
     </plugins>
+    <finalName>${artifactId}</finalName>
   </build>
 
   <prerequisites>
